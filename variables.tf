@@ -1,45 +1,41 @@
 variable "region" {
-  default = "eu-west-2"
+  default = "us-west-2"
 }
 
 variable "aws_access_key" {
-  default = "AKIAIPNIY62HHOQY6IXA"
+  default = ""
   description = "the user aws access key"
 }
 
 variable "AmiLinux" {
   type = "map"
   default = {
-   	eu-west-2 = "ami-dff017b8"
+   	us-west-2 = "ami-d874e0a0"
   }
-  description = "I using the London region"
+  description = "I am using the US region"
 }
 
 variable "aws_secret_key" {
-  default = "pJW7zMCDV+g4hh9B7jt/CQ0EOrTrJIkkq25CBIj9"
+  default = ""
   description = "the user aws secret key"
 }
 
-variable "vpc-fullcidr" {
+variable "vpc-cidr" {
   default = "10.0.0.0/16"
-  description = "the vpc cdir"
+  description = "this is the CIDR for the VPC"
 }
-variable "Subnet-Public-AzA-CIDR" {
+variable "public_subnet_cidr_one" {
   default = "10.0.1.0/24"
-  description = "the cidr of the public subnet"
+  description = "this is the CIDR for the first public subnet"
 }
 
-variable "Subnet-Private-AzA-CIDR" {
+variable "public_subnet_cidr_two" {
   default = "10.0.2.0/24"
-  description = "the cidr of the private subnet"
+  description = "this is the cidr for the second public subnet"
 }
 
 variable "key_name" {
-  default = ""
-  description = "the ssh key to use in the EC2 machines"
+  default = "obebodekey"
+  description = "the key use to ssh into EC2 machines"
 }
 
-variable "DnsZoneName" {
-  default = "ola.ubertas"
-  description = "the internal dns name"
-}

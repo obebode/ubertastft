@@ -3,10 +3,9 @@ provider "aws" {
   secret_key = "${var.aws_secret_key}"
   region     = "${var.region}"
 }
-resource "aws_vpc" "terraformmain" {
-    cidr_block = "${var.vpc-fullcidr}"
-   #### this 2 true values are for use the internal vpc dns resolution
-    enable_dns_support = true
+resource "aws_vpc" "default" {
+    cidr_block = "${var.vpc-cidr}"
+    
     enable_dns_hostnames = true
     tags {
       Name = "My ubertas vpc"

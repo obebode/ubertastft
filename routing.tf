@@ -1,16 +1,14 @@
 # Declare the data source
 data "aws_availability_zones" "available" {}
 
-/* EXTERNAL NETWORG , IG, ROUTE TABLE */
-resource "aws_internet_gateway" "gw" {
-   vpc_id = "${aws_vpc.terraformmain.id}"
-    tags {
-        Name = "internet gw terraform generated"
-    }
+
+resource "aws_internet_gateway" "default" {
+   vpc_id = "${aws_vpc.default.id}"
+    
 }
 
 resource "aws_network_acl" "all" {
-   vpc_id = "${aws_vpc.terraformmain.id}"
+   vpc_id = "${aws_vpc.default.id}"
     egress {
         protocol = "-1"
         rule_no = 2
@@ -32,33 +30,25 @@ resource "aws_network_acl" "all" {
     }
 }
 
-resource "aws_route_table" "public" {
-  vpc_id = "${aws_vpc.terraformmain.id}"
+resource "aws_route_table" "us-west-2a-public" {
+  vpc_id = "${aws_vpc.default.id}"
   tags {
       Name = "Public"
   }
   route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = "${aws_internet_gateway.gw.id}"
+        gateway_id = "${aws_internet_gateway.default.id}"
     }
 }
 
-resource "aws_route_table" "private" {
-  vpc_id = "${aws_vpc.terraformmain.id}"
+resource "aws_route_table" "us-west-2b-public" {
+  vpc_id = "${aws_vpc.default.id}"
   tags {
-      Name = "Private"
+      Name = "Public"
   }
   route {
         cidr_block = "0.0.0.0/0"
-        nat_gateway_id = "${aws_nat_gateway.PublicAZA.id}"
-  }
+        gateway_id = "${aws_internet_gateway.default.id}"
+    }
 }
 
-resource "aws_eip" "forNat" {
-    vpc      = true
-}
-resource "aws_nat_gateway" "PublicAZA" {
-    allocation_id = "${aws_eip.forNat.id}"
-    subnet_id = "${aws_subnet.PublicAZA.id}"
-    depends_on = ["aws_internet_gateway.gw"]
-}

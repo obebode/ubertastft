@@ -1,0 +1,36 @@
+{
+    "version": 3,
+    "terraform_version": "0.11.4",
+    "serial": 58,
+    "lineage": "465dd23d-806e-804b-a863-94168f07652b",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {
+                "aws_vpc_dhcp_options_association.dns_resolver": {
+                    "type": "aws_vpc_dhcp_options_association",
+                    "depends_on": [
+                        "aws_vpc.terraformmain",
+                        "aws_vpc_dhcp_options.mydhcp"
+                    ],
+                    "primary": {
+                        "id": "dopt-00b41cff1a4d2c96c-vpc-0e9e75e7849dab8a2",
+                        "attributes": {
+                            "dhcp_options_id": "dopt-00b41cff1a4d2c96c",
+                            "id": "dopt-00b41cff1a4d2c96c-vpc-0e9e75e7849dab8a2",
+                            "vpc_id": "vpc-0e9e75e7849dab8a2"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}
