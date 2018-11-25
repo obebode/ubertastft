@@ -53,14 +53,13 @@ resource "aws_security_group" "APP" {
   }
 }
 
-resource "aws_security_group" "Database" {
+/*resource "aws_security_group" "Database" {
   name = "Database"
   description = "Allow incoming database connections."
 
   tags {
         Name = "Database"
   }
-  description = "Allow only inbound tcp connection"
 
   vpc_id = "${aws_vpc.default.id}"
   ingress {
@@ -110,5 +109,8 @@ resource "aws_security_group" "Database" {
   }
  
 }
+*/
+
+
 
 

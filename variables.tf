@@ -39,3 +39,50 @@ variable "key_name" {
   description = "the key use to ssh into EC2 machines"
 }
 
+variable "instance_type" {
+  default = "db.t2.micro"
+}
+
+variable "enivironment" {
+  default = "dev"
+}
+
+variable "db_engine" {
+  default = "postgresql"
+}
+
+variable "multi_az" {
+  default = ""
+}
+
+variable "db_port" {
+  default = "5432"
+}
+
+variable "db_publicly_accessible" {
+  default = "true"
+}
+
+variable "db_storage_encrypted" {
+  default = "false"
+}
+
+variable "db_storage_type" {
+  default = "gp2"
+}
+
+variable "db_skip_final_snapshot" {
+  default = "true"
+}
+
+variable "db_username" {
+  default = "ubertas"
+}
+
+variable "db_password" {
+  default = "ubertas"
+}
+
+variable "db_maintenance_window" {
+  default = "Mon:00:00-Mon:00:30"
+}

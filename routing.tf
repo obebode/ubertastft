@@ -30,7 +30,7 @@ resource "aws_network_acl" "all" {
     }
 }
 
-resource "aws_route_table" "us-west-2a-public" {
+resource "aws_route_table" "rt_app_public" {
   vpc_id = "${aws_vpc.default.id}"
   tags {
       Name = "Public"
@@ -41,7 +41,7 @@ resource "aws_route_table" "us-west-2a-public" {
     }
 }
 
-resource "aws_route_table" "us-west-2b-public" {
+resource "aws_route_table" "rt_db_private" {
   vpc_id = "${aws_vpc.default.id}"
   tags {
       Name = "Public"

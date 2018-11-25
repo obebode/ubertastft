@@ -2,7 +2,7 @@ resource "aws_instance" "javaapp" {
   ami           = "${lookup(var.AmiLinux, var.region)}"
   instance_type = "t2.micro"
   associate_public_ip_address = "true"
-  subnet_id = "${aws_subnet.us-west-2a-public.id}"
+  subnet_id = "${aws_subnet.ubertas_subnet_app_servers.id}"
   vpc_security_group_ids = ["${aws_security_group.APP.id}"]
   key_name = "${var.key_name}"
   tags {
@@ -16,11 +16,12 @@ resource "aws_eip" "javaapp" {
   vpc = true
 }
 
+// TODO - We may not need this anymore
 resource "aws_instance" "database" {
   ami           = "${lookup(var.AmiLinux, var.region)}"
   instance_type = "t2.micro"
   associate_public_ip_address = "true"
-  subnet_id = "${aws_subnet.us-west-2b-public.id}"
+  subnet_id = "${aws_subnet.ubertas_subnet_db_servers.id}"
   vpc_security_group_ids = ["${aws_security_group.Database.id}"]
   key_name = "${var.key_name}"
   tags {
